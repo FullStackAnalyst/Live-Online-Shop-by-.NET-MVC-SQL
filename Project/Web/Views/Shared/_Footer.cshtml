@@ -1,0 +1,95 @@
+﻿@{
+    var logoPath = Url.Content(ViewBag.LogoPath ?? "~/img/logo/logo.png");
+    var companyName = ViewBag.CompanyName ?? "Uthr";
+    var address = ViewBag.Address ?? "869 General Village Apt. 645, Moorebury, USA";
+    var phone = ViewBag.Phone ?? "(+99) 052 128 2399";
+    var phoneHref = ViewBag.PhoneHref ?? "tel:(+99)0521282399";
+    var year = ViewBag.CopyrightYear ?? DateTime.Now.Year;
+    var devName = ViewBag.DeveloperName ?? "HasThemes";
+    var devUrl = ViewBag.DeveloperUrl ?? "https://hasthemes.com";
+
+    var menuItems = new[]
+    {
+        new { Text = "home", Action = "Index", Controller = "Home" },
+        new { Text = "Shop", Action = "Index", Controller = "Shop" },
+        new { Text = "Product", Action = "Details", Controller = "Product" },
+        new { Text = "Blog", Action = "Index", Controller = "Blog" }
+    };
+
+    var socialLinks = new[]
+    {
+        new { Url = "https://twitter.com", Icon = "ion-social-twitter", Label = "Twitter" },
+        new { Url = "https://www.facebook.com", Icon = "ion-social-facebook", Label = "Facebook" },
+        new { Url = "https://www.google.com", Icon = "ion-social-googleplus-outline", Label = "GooglePlus" },
+        new { Url = "https://www.instagram.com", Icon = "ion-social-instagram-outline", Label = "Instagram" },
+        new { Url = "https://www.youtube.com", Icon = "ion-social-youtube", Label = "Youtube" }
+    };
+}
+
+<footer class="footer_widgets">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-5">
+                <div class="footer_widget_list">
+                    <div class="footer_logo">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@logoPath" alt="@companyName Logo" />
+                        </a>
+                    </div>
+                    <div class="footer_contact">
+                        <div class="footer_contact_list">
+                            <span>Our Location</span>
+                            <p>@address</p>
+                        </div>
+                        <div class="footer_contact_list">
+                            <span>24/7 hotline:</span>
+                            <a href="@phoneHref">@phone</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-md-7 col-sm-7">
+                <div class="footer_widget_list text-right">
+                    <div class="footer_menu">
+                        <ul class="d-flex justify-content-end">
+                            @foreach (var item in menuItems)
+                            {
+                                var href = string.IsNullOrEmpty(item.Action) ? "#" : Url.Action(item.Action, item.Controller);
+                                <li><a href="@href">@item.Text</a></li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="footer_social">
+                        <ul class="d-flex justify-content-end">
+                            @foreach (var link in socialLinks)
+                            {
+                                <li>
+                                    <a href="@link.Url"
+                                       data-tippy="@link.Label"
+                                       data-tippy-inertia="true"
+                                       data-tippy-delay="50"
+                                       data-tippy-arrow="true"
+                                       data-tippy-placement="top"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        <i class="@link.Icon"></i>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="copyright_right">
+                        <p>
+                            ©@year <span>@companyName</span>. made with
+                            <i class="ion-heart"></i> by
+                            <a href="@devUrl" target="_blank" rel="noopener noreferrer">@devName</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
