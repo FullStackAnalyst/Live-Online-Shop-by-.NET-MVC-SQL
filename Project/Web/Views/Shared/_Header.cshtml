@@ -1,0 +1,30 @@
+﻿@{
+    var path = Context?.Request?.Path.Value?.ToLowerInvariant() ?? "";
+    var headerClass = "header_section";
+
+    if (path == "/")
+    {
+        headerClass += " header_transparent";
+    }
+    else if (path.Contains("/blog/details"))
+    {
+        // No extra class
+    }
+    else if ((path.Contains("/blog") && !path.Contains("/blog/details")) ||
+             path.Contains("/cart") ||
+             path.Contains("/checkout") ||
+             path.Contains("/product") ||
+             path.Contains("/shop"))
+    {
+        headerClass += " border-bottom";
+    }
+}
+
+<header class="@headerClass">
+    <div class="body_overlay"></div>
+    <partial name="_OffCanvasMenu"/>
+    <partial name="_MiniCart" />
+    <partial name="_HeaderTop" />
+    <partial name="_MainHeader"/>
+    <partial name="_SearchBox" />
+</header>
