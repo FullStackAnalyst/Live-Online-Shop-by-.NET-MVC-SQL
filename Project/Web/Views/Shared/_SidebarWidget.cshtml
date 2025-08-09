@@ -1,0 +1,139 @@
+﻿<aside class="sidebar_widget">
+    <div class="widget_inner">
+
+        <!-- Categories -->
+        <div class="widget_list widget_categories">
+            <h2>Categories</h2>
+            <ul>
+                <li class="widget_sub_categories">
+                    <a href="javascript:void(0)" data-toggle="collapse" data-target="#men">Men</a>
+                    <ul class="widget_dropdown_categories collapse show" id="men">
+                        <li><a href="#">New products <span>104</span></a></li>
+                        <li><a href="#">Gymwear <span>68</span></a></li>
+                        <li><a href="#">Jakets <span>75</span></a></li>
+                        <li><a href="#">Jeans <span>30</span></a></li>
+                        <li><a href="#">Shirts <span>150</span></a></li>
+                        <li><a href="#">T-Shirts <span>113</span></a></li>
+                        <li><a href="#">Accessories <span>95</span></a></li>
+                    </ul>
+                </li>
+                <li class="widget_sub_categories">
+                    <a href="javascript:void(0)" data-toggle="collapse" data-target="#women">Women</a>
+                    <ul class="widget_dropdown_categories collapse" id="women">
+                        <li><a href="#">New products <span>104</span></a></li>
+                        <li><a href="#">Gymwear <span>68</span></a></li>
+                        <li><a href="#">Jakets <span>75</span></a></li>
+                        <li><a href="#">Jeans <span>30</span></a></li>
+                        <li><a href="#">Shirts <span>150</span></a></li>
+                        <li><a href="#">T-Shirts <span>113</span></a></li>
+                        <li><a href="#">Accessories <span>95</span></a></li>
+                    </ul>
+                </li>
+                <li class="widget_sub_categories">
+                    <a href="javascript:void(0)" data-toggle="collapse" data-target="#footwear">Footwear</a>
+                    <ul class="widget_dropdown_categories collapse" id="footwear">
+                        <li><a href="#">New products <span>104</span></a></li>
+                        <li><a href="#">Gymwear <span>68</span></a></li>
+                        <li><a href="#">Jakets <span>75</span></a></li>
+                        <li><a href="#">Jeans <span>30</span></a></li>
+                        <li><a href="#">Shirts <span>150</span></a></li>
+                        <li><a href="#">T-Shirts <span>113</span></a></li>
+                        <li><a href="#">Accessories <span>95</span></a></li>
+                    </ul>
+                </li>
+                <li class="widget_sub_categories">
+                    <a href="javascript:void(0)" data-toggle="collapse" data-target="#accessories">Accessories</a>
+                    <ul class="widget_dropdown_categories collapse" id="accessories">
+                        <li><a href="#">New products <span>104</span></a></li>
+                        <li><a href="#">Gymwear <span>68</span></a></li>
+                        <li><a href="#">Jakets <span>75</span></a></li>
+                        <li><a href="#">Jeans <span>30</span></a></li>
+                        <li><a href="#">Shirts <span>150</span></a></li>
+                        <li><a href="#">T-Shirts <span>113</span></a></li>
+                        <li><a href="#">Accessories <span>95</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Filters -->
+        <div class="widget_list widget_filter">
+            <h2>Filter By</h2>
+
+            <div class="filter__list slider_range">
+                <h3>Price</h3>
+                <form action="#">
+                    <div id="slider-range"></div>
+                    <span>Range:</span>
+                    <input type="text" name="text" id="amount" />
+                </form>
+            </div>
+
+            <div class="filter__list widget_size">
+                <h3>Size</h3>
+                <ul>
+                    <li><a href="javascript:void(0)">S</a></li>
+                    <li><a href="javascript:void(0)">M</a></li>
+                    <li><a href="javascript:void(0)">L</a></li>
+                    <li><a href="javascript:void(0)">XL</a></li>
+                    <li><a href="javascript:void(0)">XLL</a></li>
+                </ul>
+            </div>
+
+            <div class="filter__list widget_color">
+                <h3>Color</h3>
+                <ul>
+                    <li><input type="checkbox" /><span class="checkmark color1"></span></li>
+                    <li><input type="checkbox" /><span class="checkmark color2"></span></li>
+                    <li><input type="checkbox" /><span class="checkmark color3"></span></li>
+                    <li><input type="checkbox" /><span class="checkmark color4"></span></li>
+                    <li><input type="checkbox" /><span class="checkmark color5"></span></li>
+                    <li><input type="checkbox" /><span class="checkmark color6"></span></li>
+                    <li><input type="checkbox" /><span class="checkmark color7"></span></li>
+                    <li><input type="checkbox" /><span class="checkmark color8"></span></li>
+                </ul>
+            </div>
+
+            <div class="filter__list widget_brands">
+                <h3 data-toggle="collapse" data-target="#brands">Brands</h3>
+                <ul class="widget_dropdown_categories collapse show" id="brands">
+                    <li><a href="#">The North Face <span>104</span></a></li>
+                    <li><a href="#">Zara Basic <span>68</span></a></li>
+                    <li><a href="#">Moschino <span>75</span></a></li>
+                    <li><a href="#">Supreme <span>30</span></a></li>
+                    <li><a href="#">Ecko Unltd <span>150</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Recent Products -->
+        <div class="widget_list">
+            <h2>Recent Product</h2>
+            <div class="recent_product">
+                <div class="recent_product_list d-flex mb-25">
+                    <div class="recent_thumb">
+                        <a asp-controller="Product" asp-action="Details">
+                            <img src="~/img/product/product4.jpg" alt="" />
+                        </a>
+                    </div>
+                    <div class="recent_content">
+                        <h4><a asp-controller="Product" asp-action="Details">Barbour T-shirt <br />International</a></h4>
+                        <span>$32.00</span>
+                    </div>
+                </div>
+                <div class="recent_product_list d-flex">
+                    <div class="recent_thumb">
+                        <a asp-controller="Product" asp-action="Details">
+                            <img src="~/img/product/product6.jpg" alt="" />
+                        </a>
+                    </div>
+                    <div class="recent_content">
+                        <h4><a asp-controller="Product" asp-action="Details">Barbour T-shirt <br />International</a></h4>
+                        <span>$32.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</aside>

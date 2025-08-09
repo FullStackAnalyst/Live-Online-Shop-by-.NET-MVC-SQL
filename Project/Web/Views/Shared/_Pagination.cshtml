@@ -1,0 +1,42 @@
+﻿@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString()?.ToLowerInvariant();
+    var action = ViewContext.RouteData.Values["action"]?.ToString()?.ToLowerInvariant();
+
+    var isShop = controller == "shop";
+    var isBlog = controller == "blog" && action == "index";
+
+    var paginationClass = "pagination_style pagination justify-content-center";
+    if (isBlog)
+    {
+        paginationClass += " blog_pagination";
+    }
+}
+
+@if (isShop || isBlog)
+{
+    <div class="@paginationClass">
+        <ul class="d-flex">
+            @if (isShop)
+            {
+                <li><a href="#"> &lt;&lt; </a></li>
+                <li><a href="#">1</a></li>
+                <li><a class="current" href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;&gt;</a></li>
+            }
+            else if (isBlog)
+            {
+                <li><a class="current" href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#">15</a></li>
+                <li><a href="#">16</a></li>
+                <li><a href="#">&gt;&gt;</a></li>
+            }
+        </ul>
+    </div>
+}

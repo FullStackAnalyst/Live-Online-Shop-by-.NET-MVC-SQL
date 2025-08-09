@@ -1,0 +1,76 @@
+﻿@{
+    var controllerName = ViewContext.RouteData.Values["controller"]?.ToString()?.ToLowerInvariant();
+    var actionName = ViewContext.RouteData.Values["action"]?.ToString()?.ToLowerInvariant();
+
+    var type = controllerName switch
+    {
+        "shop" => "shop",
+        "product" => "product",
+        "cart" => "cart",
+        "checkout" => "checkout",
+        "blog" => "blog",
+        _ => null
+    };
+
+    var extraClass = type switch
+    {
+        "product" => "breadcrumbs_product",
+        "cart" or "checkout" => "breadcrumbs_other",
+        "blog" => "breadcrumbs_blog",
+        _ => string.Empty
+    };
+
+    var centerText = type is "cart" or "checkout" or "blog";
+
+    var label = type switch
+    {
+        "product" => "shop",
+        "shop" => "shop",
+        "cart" or "checkout" => "pages",
+        "blog" => "Blog",
+        _ => null
+    };
+}
+
+@if (!string.IsNullOrEmpty(type))
+{
+    <div class="breadcrumbs_area @extraClass">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content @(centerText ? "text-center" : string.Empty)">
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">home</a></li>
+
+                            @if (type == "product")
+                            {
+                                <li><a asp-controller="Shop" asp-action="Index">shop</a></li>
+                                <li>Product Example</li>
+                            }
+                            else if (label is not null)
+                            {
+                                <li><a asp-controller="@controllerName" asp-action="Index">@label</a></li>
+                            }
+                        </ul>
+
+                        @switch (type)
+                        {
+                            case "cart":
+                                <h3>Shopping Cart</h3>
+                                break;
+                            case "checkout":
+                                <h3>Checkout</h3>
+                                break;
+                            case "blog":
+                                <h3>
+                                    Write, Share & Discuss <br />
+                                    Together
+                                </h3>
+                                break;
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

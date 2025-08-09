@@ -1,5 +1,21 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="shop_section shop_reverse">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-12">
+                <partial name="_SidebarWidget" />
+            </div>
+            <div class="col-lg-9 col-md-12">
+                <partial name="_Breadcrumbs" />
+                <partial name="_ShopBanner" />
+                <partial name="_ShopToolbar" />
+                <partial name="_ShopWrapper" />
+                <partial name="_Pagination" />
+            </div>
+        </div>
+    </div>
+</div>
