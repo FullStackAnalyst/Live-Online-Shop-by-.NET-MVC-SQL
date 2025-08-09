@@ -2,3 +2,26 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<partial name="_Breadcrumbs" />
+<section class="product_details mb-135">
+    <div class="container">
+        <div class="row">
+            <partial name="_ProductZoomGallery" />
+            <partial name="_ProductDetails" />
+        </div>
+    </div>
+</section>
+<div class="product_d_info mb-118">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product_d_inner">
+                    <partial name="_ProductTabs" />
+                    <partial name="_ProductTabContent" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="_RelatedProducts" />
