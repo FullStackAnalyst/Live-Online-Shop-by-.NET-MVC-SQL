@@ -2,3 +2,16 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<partial name="_Breadcrumbs" />
+<div class="checkout_section" id="accordion">
+	<div class="container">
+        <partial name="_ReturningCoupon" />
+        <div class="checkout_form">
+            <div class="row">
+                <partial name="_BillingShippingForm" />
+                <partial name="_OrderSummary" />
+            </div>
+        </div>
+    </div>
+</div>

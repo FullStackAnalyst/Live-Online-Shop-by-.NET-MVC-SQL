@@ -1,0 +1,107 @@
+﻿<div class="col-lg-5 col-md-6">
+    <div class="order_table_right">
+        <form action="#">
+            <h3>Your order</h3>
+            <div class="order_table table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th class="text-right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Slim Collarless Blaze</td>
+                            <td class="text-right">$75.20</td>
+                        </tr>
+                        <tr>
+                            <td>Denim Kimono Jacket</td>
+                            <td class="text-right">$50.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Cart Subtotal</td>
+                            <td class="text-right">$225.60</td>
+                        </tr>
+                        <tr class="order_total">
+                            <th>Order Total</th>
+                            <td class="text-right">$225.60</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <!-- Payment Methods -->
+                <div class="panel-default">
+                    <div class="panel_radio">
+                        <input id="payment1" name="check_method" type="radio" data-target="createp_account" />
+                        <span class="checkmark"></span>
+                    </div>
+                    <label for="payment1" data-toggle="collapse" data-target="#panel1">Direct bank transfer</label>
+                    <div id="panel1" class="collapse show one" data-parent="#accordion">
+                        <div class="card-body1">
+                            <p>
+                                Donec sed odio dui. Nulla vitae elit libero, a pharetra augue.
+                                Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-default">
+                    <div class="panel_radio">
+                        <input id="payment2" name="check_method" type="radio" data-target="createp_account" />
+                        <span class="checkmark"></span>
+                    </div>
+                    <label for="payment2" data-toggle="collapse" data-target="#method2">Cheque payment</label>
+                    <div id="method2" class="collapse two" data-parent="#accordion">
+                        <div class="card-body1">
+                            <p>
+                                Donec sed odio dui. Nulla vitae elit libero, a pharetra augue.
+                                Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-default">
+                    <div class="panel_radio">
+                        <input id="payment3" name="check_method" type="radio" data-target="createp_account" />
+                        <span class="checkmark"></span>
+                    </div>
+                    <label for="payment3" data-toggle="collapse" data-target="#method3">Cash on delivery</label>
+                    <div id="method3" class="collapse three" data-parent="#accordion">
+                        <div class="card-body1">
+                            <p>
+                                Donec sed odio dui. Nulla vitae elit libero, a pharetra augue.
+                                Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-default">
+                    <div class="panel_radio">
+                        <input id="payment4" name="check_method" type="radio" data-target="createp_account" />
+                        <span class="checkmark"></span>
+                    </div>
+                    <label for="payment4" data-toggle="collapse" data-target="#method4">Paypal</label>
+                    <div id="method4" class="collapse four" data-parent="#accordion">
+                        <div class="card-body1">
+                            <p>
+                                Donec sed odio dui. Nulla vitae elit libero, a pharetra augue.
+                                Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Place Order Button -->
+            <div class="place_order_btn">
+                <a class="btn btn-primary" href="#">Place order</a>
+            </div>
+        </form>
+    </div>
+</div>
