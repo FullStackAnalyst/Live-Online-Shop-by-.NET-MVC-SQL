@@ -2,3 +2,14 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<partial name="_Breadcrumbs" />
+<div class="blog_page_section mb-140">
+    <div class="container">
+        <partial name="_BlogFilterButtons" />
+        <div class="row blog_page_gallery">
+            <partial name="_BlogMasonryItems" />
+        </div>
+        <partial name="_Pagination" />
+    </div>
+</div>
