@@ -1,0 +1,117 @@
+﻿@functions {
+    string Img(string file) => Url.Content($"~/img/blog/{file}");
+}
+
+<div class="blog_wrapper_details">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="blog_details_content">
+                    <div class="post_header">
+                        <h2 class="post_title">How to improve the flow of UI/UX</h2>
+                        <div class="blog_meta">
+                            <ul class="d-flex">
+                                <li>Adam Levine</li>
+                                <li>December 27, 2020</li>
+                                <li>INSPIRATION</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="blog_details_desc">
+                        <h3>
+                            Pinterest, cornhole meditation Blue Bottle art party
+                            meggings cardigan yr sustainable. Letterpress McSwepen,
+                            poieney’s fap
+                        </h3>
+                        <p class="mb-35">
+                            Today most people get on average 4 to 6 hours of exercise
+                            every day... All of this for hopes of one day getting that big promotion.
+                        </p>
+                        <p class="mb-50">
+                            Coventry is a city with a thousand years of history that has
+                            plenty to offer the visiting tourist. Located in the heart
+                            of Warwickshire.
+                        </p>
+                        <blockquote class="mb-30">
+                            <p>
+                                “The forms that designers <br />
+                                produce are flexible, so long as the <br />
+                                results serve the need.”
+                            </p>
+                        </blockquote>
+                        <p class="david_moye mb-50">
+                            <span>DAVID MOYE,</span> Designer at Spotify
+                        </p>
+                        <p>
+                            Cray post-ironic plaid, Helvetica keffiyeh tousled Carles...
+                            Master cleanse Bushwick cornhole narwhal plaid.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Related Posts -->
+                <div class="related_posts">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <figure class="related_thumb">
+                                <img src="@Img("related1.jpg")" alt="" />
+                                <div class="related_popup_icon">
+                                    <a class="port_popup" href="@Img("related1.jpg")">
+                                        <i class="icon-size-fullscreen icons"></i>
+                                    </a>
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <figure class="related_thumb">
+                                <img src="@Img("related2.jpg")" alt="" />
+                                <div class="related_popup_icon">
+                                    <a class="port_popup" href="@Img("related2.jpg")">
+                                        <i class="icon-size-fullscreen icons"></i>
+                                    </a>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tags & Social -->
+                <div class="post_tags_social border-bottom">
+                    <div class="post_tags d-flex justify-content-center align-items-center">
+                        <span>TAGS: </span>
+                        <ul class="d-flex">
+                            <li><a href="#">Inspiration,</a></li>
+                            <li><a href="#">Workspace,</a></li>
+                            <li><a href="#">Minimal,</a></li>
+                            <li><a href="#">Decoation</a></li>
+                        </ul>
+                    </div>
+                    <div class="post__social d-flex justify-content-center align-items-center">
+                        <span>SHARE:</span>
+                        <ul class="d-flex">
+                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="blog_navigation">
+                    <ul class="d-flex justify-content-between">
+                        <li class="previous">
+                            <a href="#"><i class="icon-arrow-left icons"></i> Previous</a>
+                            <span>How to combine typography perfect for any design</span>
+                        </li>
+                        <li class="next">
+                            <a href="#">Next <i class="icon-arrow-right icons"></i></a>
+                            <span>Cocooil - Review</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
