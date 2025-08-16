@@ -1,6 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Web.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<DataContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("DCS")));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -18,6 +22,10 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.MapControllerRoute(
+    name: "Admin",
+    pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
