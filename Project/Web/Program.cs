@@ -25,7 +25,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "Admin",
-    pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=Menu}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
