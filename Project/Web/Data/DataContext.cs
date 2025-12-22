@@ -4,12 +4,8 @@ using Web.Models;
 
 namespace Web.Data;
 
-public class DataContext : DbContext
+public class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
 {
-    public DataContext(DbContextOptions<DataContext> options) : base(options)
-    {
-    }
-
     public DbSet<Menu> Menus { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

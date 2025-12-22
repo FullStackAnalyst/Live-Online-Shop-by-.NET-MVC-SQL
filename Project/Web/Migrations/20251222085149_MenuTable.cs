@@ -20,7 +20,7 @@ namespace Web.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: true),
                     Link = table.Column<string>(type: "TEXT", nullable: true),
-                    Type = table.Column<string>(type: "TEXT", nullable: true)
+                    Type = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,17 +32,22 @@ namespace Web.Migrations
                 columns: new[] { "Id", "Link", "Title", "Type" },
                 values: new object[,]
                 {
-                    { 1, "/Home/Index", "Home", "Main" },
-                    { 2, "/Shop/Index", "Shop", "Main" },
-                    { 3, "/Product/Details", "Product", "Main" },
-                    { 4, "/Blog/Index", "Blog", "Main" },
-                    { 5, "/Blog/Index", "Blog Pages", "Sub" },
-                    { 6, "/Blog/Details", "Blog Details", "Sub" },
-                    { 7, "/Cart/Index", "Cart", "Main" },
-                    { 8, "/Checkout/Index", "Checkout", "Main" },
-                    { 9, "#", "My Account", "Account" },
-                    { 10, "#", "Login", "Account" },
-                    { 11, "#", "Contact", "Account" }
+                    { 1, "/Home/Index", "Home", 0 },
+                    { 2, "/Shop/Index", "Shop", 0 },
+                    { 3, "/Product/Details", "Product", 0 },
+                    { 4, "/Blog/Index", "Blog", 0 },
+                    { 5, "/Blog/Index", "Blog Pages", 2 },
+                    { 6, "/Blog/Details", "Blog Details", 2 },
+                    { 7, "/Cart/Index", "Cart", 0 },
+                    { 8, "/Checkout/Index", "Checkout", 0 },
+                    { 9, "/Account/Index", "My Account", 3 },
+                    { 10, "/Account/Login", "Login", 3 },
+                    { 11, "/Contact/Index", "Contact", 3 },
+                    { 12, "/Wishlist/Index", "Wishlist", 0 },
+                    { 14, "/Home/Index", "Home", 1 },
+                    { 15, "/Shop/Index", "Shop", 1 },
+                    { 16, "/Product/Details", "Product", 1 },
+                    { 17, "/Blog/Index", "Blog", 1 }
                 });
         }
 

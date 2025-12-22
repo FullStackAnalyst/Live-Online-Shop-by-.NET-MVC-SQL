@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Web.Data;
+using Web.Enums;
 using Web.Models;
 
 namespace Web.Areas.Admin.Controllers
@@ -136,6 +137,14 @@ namespace Web.Areas.Admin.Controllers
         private bool MenuExists(int id)
         {
             return _context.Menus.Any(e => e.Id == id);
+        }
+
+        protected async Task LoadMenus()
+        {
+            ViewData["TopMenus"] = await _context.Menus
+                .Where(m => m.Type == MenuType.Top)
+                .OrderBy(m => m.Id)
+                .ToListAsync();
         }
     }
 }

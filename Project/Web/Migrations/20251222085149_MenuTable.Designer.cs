@@ -10,14 +10,14 @@ using Web.Data;
 namespace Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250816100623_MenuTable")]
+    [Migration("20251222085149_MenuTable")]
     partial class MenuTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.11");
 
             modelBuilder.Entity("Web.Models.Menu", b =>
                 {
@@ -31,8 +31,8 @@ namespace Web.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Type")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -44,77 +44,112 @@ namespace Web.Migrations
                             Id = 1,
                             Link = "/Home/Index",
                             Title = "Home",
-                            Type = "Main"
+                            Type = 0
                         },
                         new
                         {
                             Id = 2,
                             Link = "/Shop/Index",
                             Title = "Shop",
-                            Type = "Main"
+                            Type = 0
                         },
                         new
                         {
                             Id = 3,
                             Link = "/Product/Details",
                             Title = "Product",
-                            Type = "Main"
+                            Type = 0
                         },
                         new
                         {
                             Id = 4,
                             Link = "/Blog/Index",
                             Title = "Blog",
-                            Type = "Main"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Link = "/Blog/Index",
-                            Title = "Blog Pages",
-                            Type = "Sub"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Link = "/Blog/Details",
-                            Title = "Blog Details",
-                            Type = "Sub"
+                            Type = 0
                         },
                         new
                         {
                             Id = 7,
                             Link = "/Cart/Index",
                             Title = "Cart",
-                            Type = "Main"
+                            Type = 0
                         },
                         new
                         {
                             Id = 8,
                             Link = "/Checkout/Index",
                             Title = "Checkout",
-                            Type = "Main"
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Link = "/Wishlist/Index",
+                            Title = "Wishlist",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Link = "/Blog/Index",
+                            Title = "Blog Pages",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Link = "/Blog/Details",
+                            Title = "Blog Details",
+                            Type = 2
                         },
                         new
                         {
                             Id = 9,
-                            Link = "#",
+                            Link = "/Account/Index",
                             Title = "My Account",
-                            Type = "Account"
+                            Type = 3
                         },
                         new
                         {
                             Id = 10,
-                            Link = "#",
+                            Link = "/Account/Login",
                             Title = "Login",
-                            Type = "Account"
+                            Type = 3
                         },
                         new
                         {
                             Id = 11,
-                            Link = "#",
+                            Link = "/Contact/Index",
                             Title = "Contact",
-                            Type = "Account"
+                            Type = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Link = "/Home/Index",
+                            Title = "Home",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Link = "/Shop/Index",
+                            Title = "Shop",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Link = "/Product/Details",
+                            Title = "Product",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Link = "/Blog/Index",
+                            Title = "Blog",
+                            Type = 1
                         });
                 });
 #pragma warning restore 612, 618

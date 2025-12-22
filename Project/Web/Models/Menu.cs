@@ -1,4 +1,6 @@
-﻿namespace Web.Models;
+﻿using Web.Enums;
+
+namespace Web.Models;
 
 public class Menu
 {
@@ -8,5 +10,5 @@ public class Menu
 
     public string? Link { get; set; }
 
-    public string? Type { get; set; }
+    public MenuType Type { get; set; }
 }
