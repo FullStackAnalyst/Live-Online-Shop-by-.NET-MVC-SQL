@@ -1,150 +1,146 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Enums;
 using Web.Models;
 
-namespace Web.Areas.Admin.Controllers
+namespace Web.Areas.Admin.Controllers;
+
+[Area("Admin")]
+public class MenuController(DataContext context) : Controller
 {
-    [Area("Admin")]
-    public class MenuController : Controller
+    private readonly DataContext _context = context;
+
+    public async Task<IActionResult> Index()
     {
-        private readonly DataContext _context;
+        return View(await _context.Menus.ToListAsync());
+    }
 
-        public MenuController(DataContext context)
+    public async Task<IActionResult> Details(int? id)
+    {
+        if (id == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        public async Task<IActionResult> Index()
+        var menu = await _context.Menus
+            .FirstOrDefaultAsync(m => m.Id == id);
+        if (menu == null)
         {
-            return View(await _context.Menus.ToListAsync());
+            return NotFound();
         }
 
-        public async Task<IActionResult> Details(int? id)
+        return View(menu);
+    }
+
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(Menu menu)
+    {
+        if (ModelState.IsValid)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var menu = await _context.Menus
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (menu == null)
-            {
-                return NotFound();
-            }
-
-            return View(menu);
-        }
-
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Link,Type")] Menu menu)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(menu);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(menu);
-        }
-
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var menu = await _context.Menus.FindAsync(id);
-            if (menu == null)
-            {
-                return NotFound();
-            }
-            return View(menu);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Link,Type")] Menu menu)
-        {
-            if (id != menu.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(menu);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MenuExists(menu.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(menu);
-        }
-
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var menu = await _context.Menus
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (menu == null)
-            {
-                return NotFound();
-            }
-
-            return View(menu);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var menu = await _context.Menus.FindAsync(id);
-            if (menu != null)
-            {
-                _context.Menus.Remove(menu);
-            }
-
+            _context.Add(menu);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        return View(menu);
+    }
 
-        private bool MenuExists(int id)
+    public async Task<IActionResult> Edit(int? id)
+    {
+        if (id == null)
         {
-            return _context.Menus.Any(e => e.Id == id);
+            return NotFound();
         }
 
-        protected async Task LoadMenus()
+        var menu = await _context.Menus.FindAsync(id);
+        if (menu == null)
         {
-            ViewData["TopMenus"] = await _context.Menus
-                .Where(m => m.Type == MenuType.Top)
-                .OrderBy(m => m.Id)
-                .ToListAsync();
+            return NotFound();
         }
+        return View(menu);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, Menu menu)
+    {
+        if (id != menu.Id) return NotFound();
+        if (!ModelState.IsValid) return View(menu);
+
+        try
+        {
+            _context.Update(menu);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!await _context.Menus.AnyAsync(e => e.Id == id))
+                return NotFound();
+
+            throw;
+        }
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    public async Task<IActionResult> Delete(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var menu = await _context.Menus
+            .FirstOrDefaultAsync(m => m.Id == id);
+        if (menu == null)
+        {
+            return NotFound();
+        }
+
+        return View(menu);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var menu = await _context.Menus.FindAsync(id);
+        if (menu != null)
+        {
+            _context.Menus.Remove(menu);
+        }
+
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
+
+    public static async Task LoadMenus(DataContext context, ViewDataDictionary viewData)
+    {
+        viewData["TopMenus"] = await context.Menus
+            .Where(m => m.Type == MenuType.Top)
+            .OrderBy(m => m.Id)
+            .ToListAsync();
+
+        viewData["BottomMenus"] = await context.Menus
+            .Where(m => m.Type == MenuType.Bottom)
+            .OrderBy(m => m.Id)
+            .ToListAsync();
+
+        viewData["SubMenus"] = await context.Menus
+            .Where(m => m.Type == MenuType.Sub)
+            .OrderBy(m => m.Id)
+            .ToListAsync();
+
+        viewData["AccountMenus"] = await context.Menus
+            .Where(m => m.Type == MenuType.Account)
+            .OrderBy(m => m.Id)
+            .ToListAsync();
     }
 }

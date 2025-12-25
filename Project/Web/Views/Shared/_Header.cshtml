@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc
+@inject Web.Data.DataContext _context
+@{
     var path = Context?.Request?.Path.Value?.ToLowerInvariant() ?? "";
     var headerClass = "header_section";
 
@@ -14,13 +16,15 @@
     {
         headerClass += " border-bottom";
     }
+
+    await Web.Areas.Admin.Controllers.MenuController.LoadMenus(_context, ViewData);
 }
 
 <header class="@headerClass">
     <div class="body_overlay"></div>
-    <partial name="_OffCanvasMenu"/>
+    <partial name="_OffCanvasMenu" />
     <partial name="_MiniCart" />
     <partial name="_HeaderTop" />
-    <partial name="_MainHeader"/>
+    <partial name="_MainHeader" />
     <partial name="_SearchBox" />
 </header>

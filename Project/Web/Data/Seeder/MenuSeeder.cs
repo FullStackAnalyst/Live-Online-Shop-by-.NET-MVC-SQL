@@ -4,7 +4,7 @@ using Web.Models;
 
 namespace Web.Data.Seeder;
 
-public static class MenuSeeder
+public class MenuSeeder
 {
     public static void Seed(ModelBuilder modelBuilder)
     {

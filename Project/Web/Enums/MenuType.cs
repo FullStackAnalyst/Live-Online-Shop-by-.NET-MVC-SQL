@@ -1,19 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Web.Enums
+namespace Web.Enums;
+
+public enum MenuType
 {
-    public enum MenuType
-    {
-        [Display(Name = "Top Navigation")]
-        Top,
+    [Display(Name = "Top Navigation")]
+    Top,
 
-        [Display(Name = "Bottom Navigation")]
-        Bottom,
+    [Display(Name = "Bottom Navigation")]
+    Bottom,
 
-        [Display(Name = "Sub Navigation")]
-        Sub,
+    [Display(Name = "Sub Navigation")]
+    Sub,
 
-        [Display(Name = "Account Section")]
-        Account
-    }
+    [Display(Name = "Account Section")]
+    Account
 }

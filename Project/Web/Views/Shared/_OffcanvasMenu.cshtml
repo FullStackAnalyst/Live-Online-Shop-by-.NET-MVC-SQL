@@ -1,6 +1,9 @@
-﻿@{
+﻿@using Web.Models
+@{
     var currentController = ViewContext.RouteData.Values["controller"]?.ToString()?.ToLowerInvariant();
     var currentAction = ViewContext.RouteData.Values["action"]?.ToString()?.ToLowerInvariant();
+    var topMenus = ViewData["TopMenus"] as List<Menu> ?? new List<Menu>();
+    var subMenus = ViewData["SubMenus"] as List<Menu> ?? new List<Menu>();
 }
 
 <div class="offcanvas_menu">
@@ -64,34 +67,30 @@
                     <!-- Navigation Menu -->
                     <div id="menu" class="text-left">
                         <ul class="offcanvas_main_menu">
-                            <li class="@(currentController == "home" && currentAction == "index" ? "active" : "")">
-                                <a asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="@(currentController == "shop" && currentAction == "index" ? "active" : "")">
-                                <a asp-controller="Shop" asp-action="Index">Shop</a>
-                            </li>
-                            <li class="@(currentController == "product" && currentAction == "details" ? "active" : "")">
-                                <a asp-controller="Product" asp-action="Details">Product Details</a>
-                            </li>
-                            <li><a href="#">Sale</a></li>
-                            <li class="menu-item-has-children @(currentController == "cart" && currentAction == "index" ? "active" : "")">
-                                <a href="#">Pages</a>
-                                <ul class="sub-menu">
-                                    <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
-                                    <li><a asp-controller="Checkout" asp-action="Index">Checkout</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children @(currentController == "blog" && (currentAction == "index" || currentAction == "details") ? "active" : "")">
-                                <a href="#">Blog</a>
-                                <ul class="sub-menu">
-                                    <li><a asp-controller="Blog" asp-action="Index">Blog</a></li>
-                                    <li><a asp-controller="Blog" asp-action="Details">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Buy</a></li>
+                            @foreach (var menu in topMenus)
+                            {
+                                var linkParts = menu.Link?.TrimStart('/').Split('/');
+                                var menuController = linkParts?.Length > 0 ? linkParts[0].ToLowerInvariant() : "";
+                                var menuAction = linkParts?.Length > 1 ? linkParts[1].ToLowerInvariant() : "";
+                                var isActive = currentController == menuController && currentAction == menuAction;
+
+                                var hasSubMenu = subMenus.Any(s => s.Title?.Contains(menu.Title ?? "", StringComparison.OrdinalIgnoreCase) == true);
+
+                                <li class="@(hasSubMenu ? "menu-item-has-children" : "")">
+                                    <a class="@(isActive ? "active" : "")" href="@menu.Link">@menu.Title</a>
+                                    @if (hasSubMenu)
+                                    {
+                                        <ul class="sub-menu">
+                                            @foreach (var subMenu in subMenus.Where(s => s.Title?.Contains(menu.Title ?? "", StringComparison.OrdinalIgnoreCase) == true))
+                                            {
+                                                <li><a href="@subMenu.Link">@subMenu.Title</a></li>
+                                            }
+                                        </ul>
+                                    }
+                                </li>
+                            }
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
