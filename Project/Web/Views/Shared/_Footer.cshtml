@@ -1,4 +1,9 @@
-﻿@{
+﻿@using Web.Models
+@using Microsoft.AspNetCore.Mvc
+@inject Web.Data.DataContext _context
+@{
+    await Web.Areas.Admin.Controllers.MenuController.LoadMenus(_context, ViewData);
+
     var logoPath = Url.Content(ViewBag.LogoPath ?? "~/img/logo/logo.png");
     var companyName = ViewBag.CompanyName ?? "Uthr";
     var address = ViewBag.Address ?? "869 General Village Apt. 645, Moorebury, USA";
@@ -8,13 +13,7 @@
     var devName = ViewBag.DeveloperName ?? "MARS";
     var devUrl = ViewBag.DeveloperUrl ?? "https://hasthemes.com";
 
-    var menuItems = new[]
-    {
-        new { Text = "home", Action = "Index", Controller = "Home" },
-        new { Text = "Shop", Action = "Index", Controller = "Shop" },
-        new { Text = "Product", Action = "Details", Controller = "Product" },
-        new { Text = "Blog", Action = "Index", Controller = "Blog" }
-    };
+    var bottomMenus = ViewData["BottomMenus"] as List<Menu> ?? new List<Menu>();
 
     var socialLinks = new[]
     {
@@ -53,10 +52,9 @@
                 <div class="footer_widget_list text-right">
                     <div class="footer_menu">
                         <ul class="d-flex justify-content-end">
-                            @foreach (var item in menuItems)
+                            @foreach (var menu in bottomMenus)
                             {
-                                var href = string.IsNullOrEmpty(item.Action) ? "#" : Url.Action(item.Action, item.Controller);
-                                <li><a href="@href">@item.Text</a></li>
+                                <li><a href="@menu.Link">@menu.Title</a></li>
                             }
                         </ul>
                     </div>
